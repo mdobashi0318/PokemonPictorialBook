@@ -19,7 +19,7 @@ struct PokemonListRepository {
     
     static func fetch() async {
         do {
-            let result = try await PokemonAPI().pokemonService.fetchPokemonList(paginationState: .initial(pageLimit: 151))
+            let result = try await PokemonAPI().pokemonService.fetchPokemonList(paginationState: .initial(pageLimit: 898))
             await Pokemon().add(result)
         } catch {
             print(error.localizedDescription)

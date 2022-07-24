@@ -56,8 +56,8 @@
 		6D2DC6D1288C4B7F0058036C /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				6D2DC6D5288C4C0D0058036C /* PokemonDetail */,
 				6D2DC6D2288C4B980058036C /* PokemonList */,
+				6D2DC6D5288C4C0D0058036C /* PokemonDetail */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
