@@ -15,7 +15,11 @@ struct PokemonListView: View {
     var body: some View {
         NavigationView {
             if viewModel.isLoading {
-                ProgressView()
+                VStack(alignment: .center, spacing: 30) {
+                    ProgressView()
+                    Text("データを取得しています。\n少々お待ちください。")
+                        .multilineTextAlignment(.center)
+                }
             } else {
                 TabView {
                     pokemonList(region: "カントー地方", model: viewModel.kanto)
