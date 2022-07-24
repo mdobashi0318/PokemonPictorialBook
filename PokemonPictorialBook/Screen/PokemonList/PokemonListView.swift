@@ -17,13 +17,17 @@ struct PokemonListView: View {
             if viewModel.isLoading {
                 ProgressView()
             } else {
-                List(0..<viewModel.pokemonList.count, id: \.self) { row in
-                    NavigationLink(destination: {
-                        PokemonDetail(name: viewModel.pokemonList[row].name ?? "", url: viewModel.frontDefault(viewModel.pokemonList[row].name))
-                    }) {
-                        rowViwe(row)
-                    }
+                TabView {
+                    pokemonList(region: "カントー地方", model: viewModel.kanto)
+                    pokemonList(region: "ジョウト地方", model: viewModel.johto)
+                    pokemonList(region: "ホウエン地方", model: viewModel.hoenn)
+                    pokemonList(region: "シンオウ地方", model: viewModel.sinnoh)
+                    pokemonList(region: "イッシュ地方", model: viewModel.unova)
+                    pokemonList(region: "カロス地方", model: viewModel.kalos)
+                    pokemonList(region: "アローラ地方", model: viewModel.alola)
+                    pokemonList(region: "ガラル地方", model: viewModel.galar)
                 }
+                .tabViewStyle(PageTabViewStyle())
                 .navigationTitle("ポケモン図鑑")
             }
         }
@@ -35,14 +39,31 @@ struct PokemonListView: View {
         }
     }
     
-    private func rowViwe(_ row: Int) -> some View {
+    
+    private func pokemonList(region: String, model: [Pokemon]) -> some View {
+        VStack(alignment: .leading) {
+            Text(region)
+                .font(.headline)
+                .padding()
+            
+            List(0..<model.count, id: \.self) { row in
+                NavigationLink(destination: {
+                    PokemonDetail(name: model[row].name ?? "", url: viewModel.frontDefault(model[row].name))
+                }) {
+                    rowViwe(name: model[row].name ?? "")
+                }
+            }
+        }
+    }
+    
+    private func rowViwe(name: String) -> some View {
         HStack {
-            KFImage.url(URL(string: viewModel.frontDefault(viewModel.pokemonList[row].name)))
+            KFImage.url(URL(string: viewModel.frontDefault(name)))
                 .placeholder({
                     ProgressView()
                 })
                 .cancelOnDisappear(true)
-            Text(viewModel.pokemonList[row].name ?? "")
+            Text(name)
         }
     }
 }

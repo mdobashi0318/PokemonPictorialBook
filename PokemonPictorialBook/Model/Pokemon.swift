@@ -83,13 +83,16 @@ class Pokemon: Object {
         return "name"
     }
     
-    func findAll() -> [Pokemon] {
+    
+    func findKanto() -> [Pokemon] {
         var result: [Pokemon] = []
         guard let realm = Pokemon.realm else {
             return []
         }
         
-        realm.objects(Pokemon.self).forEach {
+        
+        let predicate = NSPredicate(format: "id <= 151")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
             result.append($0)
         }
         result = result.sorted {
@@ -98,8 +101,136 @@ class Pokemon: Object {
         return result
     }
     
-
-
+    
+    func findJohto() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 152 && id <= 251")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    
+    
+    func findHoenn() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 252 && id <= 386")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    func findSinnoh() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 387 && id <= 493")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    func findUnova() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 494 && id <= 649")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    func findKalos() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 650 && id <= 721")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    func findAlola() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 722 && id <= 809")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    func findGalar() -> [Pokemon] {
+        var result: [Pokemon] = []
+        guard let realm = Pokemon.realm else {
+            return []
+        }
+        
+        
+        let predicate = NSPredicate(format: "id >= 810 && id <= 890")
+        realm.objects(Pokemon.self).filter(predicate).forEach {
+            result.append($0)
+        }
+        result = result.sorted {
+            $0.id < $1.id
+        }
+        return result
+    }
+    
+    
+    
     func add(_ pokemon: PKMPagedObject<PKMPokemon>) async {
         guard let pokemonResults = pokemon.results as? [PKMNamedAPIResource] else {
             return
@@ -125,6 +256,6 @@ class Pokemon: Object {
             }
         }
     }
-
+    
 }
 

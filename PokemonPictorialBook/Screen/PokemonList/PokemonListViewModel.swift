@@ -14,7 +14,21 @@ class PokemonListViewModel: ObservableObject {
     @Published var isLoading = false
     
     /// ポケモンリスト
-    @Published var pokemonList: [Pokemon] = []
+    @Published var kanto: [Pokemon] = []
+    
+    @Published var johto: [Pokemon] = []
+    
+    @Published var hoenn: [Pokemon] = []
+    
+    @Published var sinnoh: [Pokemon] = []
+    
+    @Published var unova: [Pokemon] = []
+    
+    @Published var kalos: [Pokemon] = []
+    
+    @Published var alola: [Pokemon] = []
+    
+    @Published var galar: [Pokemon] = []
     
     /// 表示したいポケモンの画像
     let frontDefault = { (name: String?) -> String in
@@ -25,6 +39,13 @@ class PokemonListViewModel: ObservableObject {
     
     /// リストに格納するデータをDBから取得
     func setModel () {
-        pokemonList = Pokemon().findAll()
+        kanto = Pokemon().findKanto()
+        johto = Pokemon().findJohto()
+        hoenn = Pokemon().findHoenn()
+        sinnoh = Pokemon().findSinnoh()
+        unova = Pokemon().findUnova()
+        kalos = Pokemon().findKalos()
+        alola = Pokemon().findAlola()
+        galar = Pokemon().findGalar()
     }
 }
