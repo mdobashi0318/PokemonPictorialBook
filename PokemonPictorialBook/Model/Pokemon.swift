@@ -104,10 +104,10 @@ class Pokemon: Object {
         guard let pokemonResults = pokemon.results as? [PKMNamedAPIResource] else {
             return
         }
-        for resut in pokemonResults {
+        for result in pokemonResults {
             let pokemon = Pokemon()
             do {
-                let addPokemon = try await PokemonAPI().pokemonService.fetchPokemon(resut.name!)
+                let addPokemon = try await PokemonAPI().pokemonService.fetchPokemon(result.name!)
                 guard let realm = Pokemon.realm else {
                     return
                 }
