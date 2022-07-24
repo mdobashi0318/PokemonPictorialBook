@@ -54,20 +54,9 @@ struct PokemonListView: View {
                 NavigationLink(destination: {
                     PokemonDetail(name: model[row].name ?? "", url: viewModel.frontDefault(model[row].name))
                 }) {
-                    rowViwe(name: model[row].name ?? "")
+                    PokemonListRow(name: model[row].name ?? "", image: viewModel.frontDefault(model[row].name))
                 }
             }
-        }
-    }
-    
-    private func rowViwe(name: String) -> some View {
-        HStack {
-            KFImage.url(URL(string: viewModel.frontDefault(name)))
-                .placeholder({
-                    ProgressView()
-                })
-                .cancelOnDisappear(true)
-            Text(name)
         }
     }
 }
