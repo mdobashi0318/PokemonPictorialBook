@@ -45,19 +45,30 @@ struct PokemonListView: View {
     
     
     private func pokemonList(region: String, model: [Pokemon]) -> some View {
-        VStack(alignment: .leading) {
-            Text(region)
-                .font(.headline)
-                .padding()
-            
-            List(0..<model.count, id: \.self) { row in
-                NavigationLink(destination: {
-                    PokemonDetail(name: model[row].name ?? "", url: viewModel.frontDefault(model[row].name))
-                }) {
-                    PokemonListRow(name: model[row].name ?? "", image: viewModel.frontDefault(model[row].name))
+        Section (content: {
+            VStack {
+                /// Sectionのヘッダーにテキストを入れたいが、ページがヘッダー → リスト → ヘッダー → リスト という形になってしまうのでVStackでヘッダーを作る
+                HStack{
+                    Text(region)
+                        .font(.headline)
+                        .padding()
+                    Spacer()
+                }
+                List(0..<model.count, id: \.self) { row in
+                    NavigationLink(destination: {
+                        PokemonDetail(
+                            name: model[row].name ?? "",
+                            url: viewModel.frontDefault(model[row].name)
+                        )
+                    }) {
+                        PokemonListRow(
+                            name: model[row].name ?? "",
+                            image: viewModel.frontDefault(model[row].name)
+                        )
+                    }
                 }
             }
-        }
+        })
     }
 }
 
