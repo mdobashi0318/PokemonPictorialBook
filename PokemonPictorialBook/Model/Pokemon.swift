@@ -250,7 +250,6 @@ class Pokemon: Object {
                 realm.beginWrite()
                 realm.add(pokemon)
                 try realm.commitWrite()
-                UserDefaults.standard.setBool(key: .initFetch, value: true)
             } catch {
                 print(error.localizedDescription)
             }

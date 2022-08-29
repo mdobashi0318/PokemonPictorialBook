@@ -15,6 +15,7 @@ struct PokemonListRepository {
             return
         }
         await PokemonListRepository.fetch()
+        UserDefaults.standard.setBool(key: .initFetch, value: true)
     }
     
     static func fetch() async {
