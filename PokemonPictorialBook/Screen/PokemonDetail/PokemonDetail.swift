@@ -10,24 +10,22 @@ import Kingfisher
 
 struct PokemonDetail: View {
     
-    let name: String
-    
-    let url: String
+    let pokemon: Pokemon
     
     var body: some View {
         VStack {
-            KFImage.url(URL(string: url))
+            KFImage.url(PokemonSprites.getFrontDefault(pokemon.name))
                 .placeholder({
                     ProgressView()
                 })
                 .cancelOnDisappear(true)
-            Text(name)
+            Text(pokemon.name ?? "")
         }
     }
 }
 
 struct PokemonDetail_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonDetail(name: "bulbasaur", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
+        PokemonDetail(pokemon: Pokemon())
     }
 }

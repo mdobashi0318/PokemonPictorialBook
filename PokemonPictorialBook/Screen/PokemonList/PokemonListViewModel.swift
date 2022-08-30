@@ -30,11 +30,6 @@ class PokemonListViewModel: ObservableObject {
     
     @Published var galar: [Pokemon] = []
     
-    /// 表示したいポケモンの画像
-    let frontDefault = { (name: String?) -> String in
-        return PokemonSprites().fetch(name ?? "")?.frontDefault ?? ""
-    }
-    
     
     
     /// リストに格納するデータをDBから取得

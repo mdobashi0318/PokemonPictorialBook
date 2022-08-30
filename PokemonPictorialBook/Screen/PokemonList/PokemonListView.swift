@@ -55,15 +55,9 @@ struct PokemonListView: View {
                 }
                 List(0..<model.count, id: \.self) { row in
                     NavigationLink(destination: {
-                        PokemonDetail(
-                            name: model[row].name ?? "",
-                            url: viewModel.frontDefault(model[row].name)
-                        )
+                        PokemonDetail(pokemon: model[row])
                     }) {
-                        PokemonListRow(
-                            name: model[row].name ?? "",
-                            image: viewModel.frontDefault(model[row].name)
-                        )
+                        PokemonListRow(name: model[row].name ?? "")
                     }
                 }
             }

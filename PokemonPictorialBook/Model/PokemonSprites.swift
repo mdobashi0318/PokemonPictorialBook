@@ -12,37 +12,35 @@ import PokemonAPI
 /// Pokemon Sprites
 class PokemonSprites: Object {
     
-    @objc dynamic var keyName: String = ""
+    
+    // MARK: private
+    
+    @objc dynamic private var keyName: String = ""
     
     /// The default depiction of this Pokémon from the front in battle
-    @objc dynamic var frontDefault: String?
+    @objc dynamic private var frontDefault: String?
     
     /// The shiny depiction of this Pokémon from the front in battle
-    @objc dynamic var frontShiny: String?
+    @objc dynamic private var frontShiny: String?
     
     /// The female depiction of this Pokémon from the front in battle
-    @objc dynamic var frontFemale: String?
+    @objc dynamic private var frontFemale: String?
     
     /// The shiny female depiction of this Pokémon from the front
-    @objc dynamic var frontShinyFemale: String?
+    @objc dynamic private var frontShinyFemale: String?
     
     /// The default depiction of this Pokémon from the back in battle
-    @objc dynamic var backDefault: String?
+    @objc dynamic private var backDefault: String?
     
     /// The shiny depiction of this Pokémon from the back in battle
-    @objc dynamic var backShiny: String?
+    @objc dynamic private var backShiny: String?
     
     /// The female depiction of this Pokémon from the back in battle
-    @objc dynamic var backFemale: String?
+    @objc dynamic private var backFemale: String?
     
     /// The shiny female depiction of this Pokémon from the back in battle
-    @objc dynamic var backShinyFemale: String?
+    @objc dynamic private var backShinyFemale: String?
     
-    //
-    //
-    //    override static func primaryKey() -> String? {
-    //        return "name"
-    //    }
     
     /// Realmのインスタンス化
     private static var realm: Realm? {
@@ -55,6 +53,15 @@ class PokemonSprites: Object {
         } catch {
             return nil
         }
+    }
+    
+    
+    
+    // MARK: internal
+    
+    /// ポケモンの画像
+    static let getFrontDefault = { (name: String?) -> URL in
+        return URL(string: PokemonSprites.fetch(name ?? "")?.frontDefault ?? "")!
     }
     
     
@@ -78,7 +85,7 @@ class PokemonSprites: Object {
     }
     
     
-    func fetch(_ name: String) -> PokemonSprites? {
+    static func fetch(_ name: String) -> PokemonSprites? {
         guard let realm = PokemonSprites.realm else {
             return nil
         }

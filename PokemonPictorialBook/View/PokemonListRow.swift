@@ -11,11 +11,10 @@ import Kingfisher
 
 struct PokemonListRow: View {
     @State var name: String
-    @State var image: String
     
     var body: some View {
         HStack {
-            KFImage.url(URL(string: image)!)
+            KFImage.url(PokemonSprites.getFrontDefault(name))
                 .placeholder({
                     ProgressView()
                 })
@@ -27,6 +26,6 @@ struct PokemonListRow: View {
 
 struct PokemonListRow_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonListRow(name: "name", image: "image")
+        PokemonListRow(name: "name")
     }
 }
