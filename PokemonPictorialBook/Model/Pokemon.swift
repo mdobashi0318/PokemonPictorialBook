@@ -246,6 +246,10 @@ class Pokemon: Object {
                 pokemon.id = addPokemon.id ?? 0
                 pokemon.sprites = PokemonSprites()
                 pokemon.sprites?.add(addPokemon)
+                pokemon.height = addPokemon.height ?? 0
+                pokemon.weight = addPokemon.weight ?? 0
+                pokemon.order = addPokemon.order ?? 0
+                pokemon.baseExperience = addPokemon.baseExperience ?? 0
                 
                 realm.beginWrite()
                 realm.add(pokemon)
