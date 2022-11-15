@@ -21,16 +21,39 @@ struct PokemonListView: View {
                 }
             } else {
                 TabView {
-                    pokemonList(region: "カントー地方", model: viewModel.kanto)
-                    pokemonList(region: "ジョウト地方", model: viewModel.johto)
-                    pokemonList(region: "ホウエン地方", model: viewModel.hoenn)
-                    pokemonList(region: "シンオウ地方", model: viewModel.sinnoh)
-                    pokemonList(region: "イッシュ地方", model: viewModel.unova)
-                    pokemonList(region: "カロス地方", model: viewModel.kalos)
-                    pokemonList(region: "アローラ地方", model: viewModel.alola)
-                    pokemonList(region: "ガラル地方", model: viewModel.galar)
+                    pokemonList(model: viewModel.kanto)
+                        .tabItem {
+                            Label("カントー", systemImage: "list.bullet")
+                        }
+                    pokemonList(model: viewModel.johto)
+                        .tabItem {
+                            Label("ジョウト", systemImage: "list.bullet")
+                        }
+                    pokemonList(model: viewModel.hoenn)
+                        .tabItem {
+                            Label("ホウエン", systemImage: "list.bullet")
+                        }
+                    pokemonList(model: viewModel.sinnoh)
+                        .tabItem {
+                            Label("シンオウ", systemImage: "list.bullet")
+                        }
+                    pokemonList(model: viewModel.unova)
+                        .tabItem {
+                            Label("イッシュ", systemImage: "list.bullet")
+                        }
+                    pokemonList(model: viewModel.kalos)
+                        .tabItem {
+                            Label("カロス", systemImage: "list.bullet")
+                        }
+                    pokemonList(model: viewModel.alola)
+                        .tabItem {
+                            Label("アローラ", systemImage: "list.bullet")
+                        }
+                    pokemonList( model: viewModel.galar)
+                        .tabItem {
+                            Label("ガラル", systemImage: "list.bullet")
+                        }
                 }
-                .tabViewStyle(PageTabViewStyle())
                 .navigationTitle("ポケモン図鑑")
             }
         }
@@ -43,25 +66,14 @@ struct PokemonListView: View {
     }
     
     
-    private func pokemonList(region: String, model: [Pokemon]) -> some View {
-        Section (content: {
-            VStack {
-                /// Sectionのヘッダーにテキストを入れたいが、ページがヘッダー → リスト → ヘッダー → リスト という形になってしまうのでVStackでヘッダーを作る
-                HStack{
-                    Text(region)
-                        .font(.headline)
-                        .padding()
-                    Spacer()
-                }
-                List(0..<model.count, id: \.self) { row in
-                    NavigationLink(destination: {
-                        PokemonDetail(pokemon: model[row])
-                    }) {
-                        PokemonListRow(name: model[row].name ?? "")
-                    }
-                }
+    private func pokemonList(model: [Pokemon]) -> some View {
+        List(0..<model.count, id: \.self) { row in
+            NavigationLink(destination: {
+                PokemonDetail(pokemon: model[row])
+            }) {
+                PokemonListRow(name: model[row].name ?? "")
             }
-        })
+        }
     }
 }
 
